@@ -4,6 +4,20 @@
 #  from controller import Robot, Motor, DistanceSensor
 from controller import Robot
 import random
+
+def get_color(camera):
+    image = camera.getImageArray()
+    gray = 0
+    for x in range(0,camera.getWidth()):
+        for y in range(0,camera.getHeight()):
+            red   = image[x][y][0]
+            green = image[x][y][1]
+            blue  = image[x][y][2]
+            gray  += (red + green + blue) / 3
+
+    total_gray = gray/(camera.getWidth()*camera.getHeight())
+    print('gray='+str(total_gray))
+    total_gray
     
 def random_walk(leftMotor, rightMotor):
     directions = ["forward", "left", "right"]
@@ -25,6 +39,10 @@ robot = Robot()
 # get the time step of the current world.
 timestep = int(robot.getBasicTimeStep())
 
+# Enable camera on the epuck
+camera = robot.getDevice('camera')
+camera.enable(timestep)
+
 leftMotor = robot.getDevice('left wheel motor')
 rightMotor = robot.getDevice('right wheel motor')
 leftMotor.setPosition(float('inf'))
@@ -38,6 +56,7 @@ count = 0
 # - perform simulation steps until Webots is stopping the controller
 while robot.step(timestep) != -1:
     count += 1
+    get_color(camera)
     if count == 30:
         random_walk(leftMotor, rightMotor)
         count = 0
