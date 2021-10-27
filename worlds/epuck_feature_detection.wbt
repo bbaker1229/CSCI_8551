@@ -1,0 +1,24 @@
+#VRML_SIM R2021b utf8
+WorldInfo {
+  coordinateSystem "NUE"
+}
+Viewpoint {
+  orientation -0.5541425324620676 -0.7720811224479731 -0.3111539716539131 1.276895666390329
+  position -0.8214258603052433 1.07874233736455 0.7513456308648295
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+}
+E-puck {
+  hidden position_0_0 664.7010943134917
+  hidden position_0_1 750.5578887533014
+  hidden rotation_1 1 0 0 1.3165482475444723
+  hidden rotation_2 1 0 0 3.4243481082489504
+  rotation -0.0005349370206699569 -0.9999997786061761 -0.00039576506019027265 1.268471265776522
+  controller "epuck_feature_detection"
+  camera_fieldOfView 0.5
+  camera_rotation 1 0 0 -0.26180030610042526
+}
