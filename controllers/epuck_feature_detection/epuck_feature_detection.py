@@ -82,35 +82,38 @@ while robot.step(timestep) != -1:
             rightMotor.setVelocity(-MAX_ROTATION)
             # Pause observation window
             time_left = window_target_time - robot.getTime()
-        if robot.getTime() >= window_target_time:  # If we reach the full time window then reset the timers
-            estimate = round(white_time / (white_time + black_time), 3)
-            print(estimate)
-            confidence = max(white_time, black_time) / (white_time + black_time)
-            print(confidence)
-            com_period = confidence * 120
-            window_target_time = robot.getTime() + 60
-            white_time = 0
-            black_time = 0
-            forward_flg = False
-            turn_flg = False
-            com_flg = True
-            leftMotor.setVelocity(0)
-            rightMotor.setVelocity(0)
-        else:
-            if gs.getValue() > 650 and forward_flg:
-                white_time += 1
-            if gs.getValue() < 650 and forward_flg:
-                black_time += 1
+
     if com_flg:
         print("Myid: ", myid, end=',')
         print("Estimate: ", estimate)
-        if time_delta >= com_period:
+        com_time_delta =  robot.getTime() - start_com_period
+        if com_time_delta >= com_period:
+            print("Observation time starting")
             forward_flg = True
             turn_flg = False
             com_flg = False
             window_target_time = robot.getTime() + 60
             leftMotor.setVelocity(MAX_SPEED)
             rightMotor.setVelocity(MAX_SPEED)
+
+    else:
+        if robot.getTime() >= window_target_time:  # If we reach the full time window then reset the timers
+            estimate = round(white_time / (white_time + black_time), 3)
+            print(estimate)
+            confidence = max(white_time, black_time) / (white_time + black_time)
+            print(confidence)
+            com_period = confidence * 120
+            start_com_period = robot.getTime()
+            window_target_time = robot.getTime() + 60
+            white_time = 0
+            black_time = 0
+            com_flg = True
+        else:
+            if gs.getValue() > 650:
+                white_time += 1
+            if gs.getValue() < 650:
+                black_time += 1
+
     if turn_flg:
         if time_delta >= rotation_time:  # If we are in turn mode and we hit the time limit; forward
             # Adjust flags
