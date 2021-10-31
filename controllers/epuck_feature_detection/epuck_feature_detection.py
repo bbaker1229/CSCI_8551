@@ -60,6 +60,10 @@ white_time = 0
 black_time = 0
 time_left = 0
 
+received_estimates = dict()
+concentration = 0.5
+first_belief = True
+
 # Main loop:
 # - perform simulation steps until Webots is stopping the controller
 while robot.step(timestep) != -1:
@@ -99,6 +103,20 @@ while robot.step(timestep) != -1:
         emitter.send(msg)
         com_time_delta =  robot.getTime() - start_com_period
         if com_time_delta >= com_period:
+            # calculate new belief
+            black_count = 0
+            white_count = 0
+            for (id,(time, estimate)) in received_estimates.items():
+                if estimate == 1:
+                    white_count += 1
+                else:
+                    black_count  += 1
+
+            if white_count > black_count:
+                belief = 1
+            else:
+                belief = 0
+
             print("Observation time starting")
             forward_flg = True
             turn_flg = False
@@ -110,8 +128,6 @@ while robot.step(timestep) != -1:
     else:
         if robot.getTime() >= window_target_time:  # If we reach the full time window then reset the timers
             estimate = round(white_time / (white_time + black_time))
-            # temp set belief to estimate until it is calculated
-            belief = estimate
             print(estimate)
             confidence = max(white_time, black_time) / (white_time + black_time)
             print(confidence)
@@ -121,6 +137,8 @@ while robot.step(timestep) != -1:
             white_time = 0
             black_time = 0
             com_flg = True
+            if first_belief:
+                belief = estimate
         else:
             if gs.getValue() > 650:
                 white_time += 1
@@ -143,10 +161,27 @@ while robot.step(timestep) != -1:
             window_target_time = robot.getTime() + time_left
 
     if receiver.getQueueLength() > 0:
+        # get message from reciever
         data = receiver.getData()
-        msg = struct.unpack("36sii", data)
-        print("Received: ", msg)
         receiver.nextPacket()
+        # unpack message
+        (id, received_estimate, received_belief) = struct.unpack("36sii", data)
+        # clear old data
+        # this could be improved with a custom class
+        to_remove = list()
+        for id,(time, estimate) in received_estimates.items():
+            if (robot.getTime()-time) > 180:
+                to_remove.append(id)
+
+        for id in to_remove:
+            received_estimates.pop(id)
+
+        # update
+        str_id = str(id)
+        if str_id not in received_estimates.keys():
+            concentration = 0.9*concentration + 0.1*received_belief
+        received_estimates[str_id] = (robot.getTime(), received_estimate)
+
     pass
 
 # Enter here exit cleanup code.
