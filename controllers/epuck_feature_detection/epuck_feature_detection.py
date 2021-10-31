@@ -8,7 +8,9 @@ import struct
 BODYLENGTH = 71
 MAX_SPEED = 6.28
 MAX_ROTATION = 0.628  # 1 full rotation in 10s
-COM_RADIUS = 3 * BODYLENGTH
+# comm range is in meters
+COM_RADIUS = 3 * (BODYLENGTH/1000)
+print("COM_RADIUS:  ", COM_RADIUS)
 myid = random.randint(0, 100)  # Need a better method to do this
 print("My ID is: ", myid)
 
