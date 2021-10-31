@@ -24,7 +24,7 @@ timestep = int(robot.getBasicTimeStep())
 gs = robot.getDevice('gs1')
 gs.enable(timestep)
 
-# Enable
+# Enable distance sensor
 ps = robot.getDevice('ps0')
 ps.enable(timestep)
 
