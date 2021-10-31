@@ -63,6 +63,9 @@ time_left = 0
 received_estimates = dict()
 concentration = 0.5
 first_belief = True
+decision = False
+decison_check = False
+start_decison_check = robot.getTime()
 
 # Main loop:
 # - perform simulation steps until Webots is stopping the controller
@@ -102,7 +105,10 @@ while robot.step(timestep) != -1:
         msg = struct.pack("36sii",myid.bytes,estimate,belief)
         emitter.send(msg)
         com_time_delta =  robot.getTime() - start_com_period
-        if com_time_delta >= com_period:
+
+        # if a decision has been made, stay in communication mode
+        # for remainder of run
+        if com_time_delta >= com_period and not decision:
             # calculate new belief
             black_count = 0
             white_count = 0
@@ -180,8 +186,32 @@ while robot.step(timestep) != -1:
         str_id = str(id)
         if str_id not in received_estimates.keys():
             concentration = 0.9*concentration + 0.1*received_belief
+            print("Concentration ", concentration)
         received_estimates[str_id] = (robot.getTime(), received_estimate)
 
+    # check for decision
+    if not decision:
+        if (concentration > 0.9 or concentration < 0.1) and (not decison_check):
+            print("Start concentration time")
+            decison_check = True
+            start_decison_check = robot.getTime()
+
+        decision_time = robot.getTime() - start_decison_check
+        if concentration > 0.9 and decision_time > 30 and decison_check:
+            decision = True
+            belief = 1
+            com_flg = True
+            print(myid, " decision made: white")
+        elif concentration < 0.1 and decision_time > 30 and decison_check:
+            decision = True
+            belief = 0
+            # if a decision has been made, switch to communication mode
+            # for remainder of run
+            com_flg = True
+            print(myid, " decision made: black")
+        elif (concentration < 0.9 and concentration > 0.1):
+            # reset decision_check
+            decison_check = False
     pass
 
 # Enter here exit cleanup code.
