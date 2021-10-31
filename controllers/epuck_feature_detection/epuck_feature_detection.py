@@ -3,6 +3,7 @@
 from controller import Robot
 import numpy as np
 import random
+import struct
 
 BODYLENGTH = 71
 MAX_SPEED = 6.28
@@ -30,6 +31,12 @@ leftMotor = robot.getDevice('left wheel motor')
 rightMotor = robot.getDevice('right wheel motor')
 leftMotor.setPosition(float('inf'))
 rightMotor.setPosition(float('inf'))
+
+# Enable Receiver and Emitter
+emitter = robot.getDevice('emitter')
+emitter.setRange(COM_RADIUS)
+receiver = robot.getDevice('receiver')
+receiver.enable(timestep)
 
 # Initialize forward movement
 leftMotor.setVelocity(MAX_SPEED)
@@ -84,8 +91,9 @@ while robot.step(timestep) != -1:
             time_left = window_target_time - robot.getTime()
 
     if com_flg:
-        print("Myid: ", myid, end=',')
-        print("Estimate: ", estimate)
+        # Send message in format id,estimate,belief
+        msg = struct.pack("iii",myid,estimate,belief)
+        emitter.send(msg)
         com_time_delta =  robot.getTime() - start_com_period
         if com_time_delta >= com_period:
             print("Observation time starting")
@@ -98,7 +106,9 @@ while robot.step(timestep) != -1:
 
     else:
         if robot.getTime() >= window_target_time:  # If we reach the full time window then reset the timers
-            estimate = round(white_time / (white_time + black_time), 3)
+            estimate = round(white_time / (white_time + black_time))
+            # temp set belief to estimate until it is calculated
+            belief = estimate
             print(estimate)
             confidence = max(white_time, black_time) / (white_time + black_time)
             print(confidence)
@@ -128,6 +138,12 @@ while robot.step(timestep) != -1:
             rightMotor.setVelocity(MAX_SPEED)
             # Reset observation window timer
             window_target_time = robot.getTime() + time_left
+
+    if receiver.getQueueLength() > 0:
+        data = receiver.getData()
+        msg = struct.unpack("iii", data)
+        print("Received: ", msg)
+        receiver.nextPacket()
     pass
 
 # Enter here exit cleanup code.
