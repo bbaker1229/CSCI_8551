@@ -5,7 +5,7 @@ import numpy as np
 import random
 
 BODYLENGTH = 71
-MAX_SPEED = 1 * BODYLENGTH
+MAX_SPEED = 6.28
 MAX_ROTATION = 0.628  # 1 full rotation in 10s
 COM_RADIUS = 3 * BODYLENGTH
 myid = random.randint(0, 100)  # Need a better method to do this
