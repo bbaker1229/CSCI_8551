@@ -4,6 +4,7 @@ from controller import Robot
 import numpy as np
 import random
 import struct
+import uuid
 
 BODYLENGTH = 71
 MAX_SPEED = 6.28
@@ -11,7 +12,7 @@ MAX_ROTATION = 0.628  # 1 full rotation in 10s
 # comm range is in meters
 COM_RADIUS = 3 * (BODYLENGTH/1000)
 print("COM_RADIUS:  ", COM_RADIUS)
-myid = random.randint(0, 100)  # Need a better method to do this
+myid = uuid.uuid4()
 print("My ID is: ", myid)
 
 # create the Robot instance.
@@ -94,7 +95,7 @@ while robot.step(timestep) != -1:
 
     if com_flg:
         # Send message in format id,estimate,belief
-        msg = struct.pack("iii",myid,estimate,belief)
+        msg = struct.pack("36sii",myid.bytes,estimate,belief)
         emitter.send(msg)
         com_time_delta =  robot.getTime() - start_com_period
         if com_time_delta >= com_period:
@@ -143,7 +144,7 @@ while robot.step(timestep) != -1:
 
     if receiver.getQueueLength() > 0:
         data = receiver.getData()
-        msg = struct.unpack("iii", data)
+        msg = struct.unpack("36sii", data)
         print("Received: ", msg)
         receiver.nextPacket()
     pass
