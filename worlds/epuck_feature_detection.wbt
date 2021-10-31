@@ -22,8 +22,6 @@ E-puck {
   translation 1.1301199017186309e-10 -6.391729025692974e-05 -4.219543218872841e-11
   rotation -4.7366135993289357e-05 -0.9999999981880853 -3.715210291346857e-05 1.268471055029571
   controller "epuck_feature_detection"
-  camera_fieldOfView 0.5
-  camera_rotation 1 0 0 -0.26180030610042526
   groundSensorsSlot [
     DEF groundSensors E-puckGroundSensors {
     }
