@@ -171,7 +171,7 @@ while robot.step(timestep) != -1:
         data = receiver.getData()
         receiver.nextPacket()
         # unpack message
-        (id, received_estimate, received_belief) = struct.unpack("36sii", data)
+        (newid, received_estimate, received_belief) = struct.unpack("36sii", data)
         # clear old data
         # this could be improved with a custom class
         to_remove = list()
@@ -183,7 +183,7 @@ while robot.step(timestep) != -1:
             received_estimates.pop(id)
 
         # update
-        str_id = str(id)
+        str_id = str(newid)
         if str_id not in received_estimates.keys():
             concentration = 0.9*concentration + 0.1*received_belief
             print("Concentration ", concentration)
