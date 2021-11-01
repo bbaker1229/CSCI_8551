@@ -3,24 +3,117 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation -0.5541425324620676 -0.7720811224479731 -0.3111539716539131 1.276895666390329
-  position -5.6805199008510385 6.604026541970303 3.576616561665853
+  orientation -0.5672196171152116 -0.7670050800296174 -0.29994184964494885 1.2272027010661148
+  position -3.076807897223405 3.639369874655571 2.098883595426124
 }
 TexturedBackground {
 }
 TexturedBackgroundLight {
 }
 RectangleArena {
-  floorSize 5.325 5.325
-  floorTileSize 5.325 5.325
+  floorSize 2.325 2.325
+  floorTileSize 2.325 2.325
+  floorAppearance Appearance {
+    texture ImageTexture {
+      url [
+        "E:/Github/CSCI_8551/controllers/epuck_feature_detection/floor_plan_R_75_seed_3130.jpeg"
+      ]
+    }
+  }
 }
 E-puck {
-  hidden position_0_0 664.7010943444018
-  hidden position_0_1 750.5578887842116
-  hidden rotation_1 1 0 0 1.3165482166343851
-  hidden rotation_2 1 0 0 3.42434807733875
-  translation 1.1301199017186309e-10 -6.391729025692974e-05 -4.219543218872841e-11
-  rotation -4.7366135993289357e-05 -0.9999999981880853 -3.715210291346857e-05 1.268471055029571
+  translation 0.29161138707727813 -6.412965987955682e-05 -0.09100275093429488
+  rotation 0.00037178751196098684 -0.9999997574504796 0.0005889592751449107 2.0327109768474907
+  controller "epuck_feature_detection"
+  groundSensorsSlot [
+    DEF groundSensors E-puckGroundSensors {
+    }
+  ]
+}
+E-puck {
+  translation 0.5622972354736896 -6.430309698199181e-05 -0.018706303624049358
+  rotation 9.921690875758528e-06 -0.9999999999329906 5.9648030967080995e-06 1.4097702041866444
+  name "e-puck(1)"
+  controller "epuck_feature_detection"
+  groundSensorsSlot [
+    DEF groundSensors E-puckGroundSensors {
+    }
+  ]
+}
+E-puck {
+  translation -0.416969 -6.43031e-05 -0.434729
+  rotation 9.921690875758528e-06 -0.9999999999329906 5.9648030967080995e-06 1.4097702041866444
+  name "e-puck(2)"
+  controller "epuck_feature_detection"
+  groundSensorsSlot [
+    DEF groundSensors E-puckGroundSensors {
+    }
+  ]
+}
+E-puck {
+  translation -0.159293 -6.43031e-05 -0.521282
+  rotation 9.921690875758528e-06 -0.9999999999329906 5.9648030967080995e-06 1.4097702041866444
+  name "e-puck(3)"
+  controller "epuck_feature_detection"
+  groundSensorsSlot [
+    DEF groundSensors E-puckGroundSensors {
+    }
+  ]
+}
+E-puck {
+  translation 0.267257 -6.43031e-05 -0.465843
+  rotation 9.921690875758528e-06 -0.9999999999329906 5.9648030967080995e-06 1.4097702041866444
+  name "e-puck(4)"
+  controller "epuck_feature_detection"
+  groundSensorsSlot [
+    DEF groundSensors E-puckGroundSensors {
+    }
+  ]
+}
+E-puck {
+  translation -0.377914 -6.43031e-05 0.156
+  rotation 9.921690875758528e-06 -0.9999999999329906 5.9648030967080995e-06 1.4097702041866444
+  name "e-puck(5)"
+  controller "epuck_feature_detection"
+  groundSensorsSlot [
+    DEF groundSensors E-puckGroundSensors {
+    }
+  ]
+}
+E-puck {
+  translation -0.360109 -6.43031e-05 -0.190974
+  rotation 9.921690875758528e-06 -0.9999999999329906 5.9648030967080995e-06 1.4097702041866444
+  name "e-puck(6)"
+  controller "epuck_feature_detection"
+  groundSensorsSlot [
+    DEF groundSensors E-puckGroundSensors {
+    }
+  ]
+}
+E-puck {
+  translation -0.057431 -6.43031e-05 0.415971
+  rotation 9.921690875758528e-06 -0.9999999999329906 5.9648030967080995e-06 1.4097702041866444
+  name "e-puck(7)"
+  controller "epuck_feature_detection"
+  groundSensorsSlot [
+    DEF groundSensors E-puckGroundSensors {
+    }
+  ]
+}
+E-puck {
+  translation -0.0390956 -6.43031e-05 0.0732197
+  rotation 9.921690875758528e-06 -0.9999999999329906 5.9648030967080995e-06 1.4097702041866444
+  name "e-puck(8)"
+  controller "epuck_feature_detection"
+  groundSensorsSlot [
+    DEF groundSensors E-puckGroundSensors {
+    }
+  ]
+}
+E-puck {
+  translation 0.395924 -6.43031e-05 0.373974
+  rotation 9.921690875758528e-06 -0.9999999999329906 5.9648030967080995e-06 1.4097702041866444
+  name "e-puck(9)"
   controller "epuck_feature_detection"
   groundSensorsSlot [
     DEF groundSensors E-puckGroundSensors {
