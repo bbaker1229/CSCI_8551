@@ -7,11 +7,12 @@ import struct
 import uuid
 import time
 
-BODYLENGTH = 71
+# body length in meters
+BODYLENGTH = 71/1000
 MAX_SPEED = 6.28
 MAX_ROTATION = 0.628  # 1 full rotation in 10s
 # comm range is in meters
-COM_RADIUS = 3 * (BODYLENGTH/1000)
+COM_RADIUS = 3 * BODYLENGTH
 print("COM_RADIUS:  ", COM_RADIUS)
 myid = uuid.uuid4()
 print("My ID is: ", myid)
