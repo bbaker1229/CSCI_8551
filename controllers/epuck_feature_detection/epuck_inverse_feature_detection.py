@@ -1,4 +1,4 @@
-"""epuck_feature_detection controller."""
+"""epuck_inverse_feature_detection controller."""
 
 from controller import Robot
 import numpy as np
@@ -115,10 +115,12 @@ while robot.step(timestep) != -1:
             black_count = 0
             white_count = 0
             for (id,(time_estimate, estimate)) in received_estimates.items():
+                # reverse count, so if estimate == 1 increase black count
+                # instead of white
                 if estimate == 1:
-                    white_count += 1
-                else:
                     black_count  += 1
+                else:
+                    white_count += 1
 
             if white_count > black_count:
                 belief = 1
