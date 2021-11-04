@@ -11,8 +11,8 @@ TexturedBackground {
 TexturedBackgroundLight {
 }
 RectangleArena {
-  floorSize 2.325 2.325
-  floorTileSize 2.325 2.325
+  floorSize 2.6 2.6
+  floorTileSize 2.6 2.6
   floorAppearance Appearance {
     texture ImageTexture {
       url [
