@@ -5,6 +5,7 @@ import numpy as np
 import random
 import struct
 import uuid
+import time
 
 BODYLENGTH = 71
 MAX_SPEED = 6.28
@@ -112,7 +113,7 @@ while robot.step(timestep) != -1:
             # calculate new belief
             black_count = 0
             white_count = 0
-            for (id,(time, estimate)) in received_estimates.items():
+            for (id,(time_estimate, estimate)) in received_estimates.items():
                 if estimate == 1:
                     white_count += 1
                 else:
@@ -175,8 +176,8 @@ while robot.step(timestep) != -1:
         # clear old data
         # this could be improved with a custom class
         to_remove = list()
-        for id,(time, estimate) in received_estimates.items():
-            if (robot.getTime()-time) > 180:
+        for id,(time_estimate, estimate) in received_estimates.items():
+            if (robot.getTime()-time_estimate) > 180:
                 to_remove.append(id)
 
         for id in to_remove:
@@ -201,14 +202,22 @@ while robot.step(timestep) != -1:
             decision = True
             belief = 1
             com_flg = True
-            print(myid, " decision made: white")
+            print(
+                myid,
+                "decision made: white at",
+                time.strftime('%H:%M:%S', time.gmtime(robot.getTime()))
+            )
         elif concentration < 0.1 and decision_time > 30 and decison_check:
             decision = True
             belief = 0
             # if a decision has been made, switch to communication mode
             # for remainder of run
             com_flg = True
-            print(myid, " decision made: black")
+            print(
+                myid,
+                "decision made: black at",
+                time.strftime('%H:%M:%S', time.gmtime(robot.getTime()))
+            )
         elif (concentration < 0.9 and concentration > 0.1):
             # reset decision_check
             decison_check = False
