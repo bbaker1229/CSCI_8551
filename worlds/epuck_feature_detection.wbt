@@ -21,10 +21,11 @@ RectangleArena {
     }
   }
 }
-E-puck {
+DEF e-puck E-puck {
   translation 0.29161138707727813 -6.412965987955682e-05 -0.09100275093429488
   rotation 0.00037178751196098684 -0.9999997574504796 0.0005889592751449107 2.0327109768474907
   controller "epuck_feature_detection"
+  supervisor TRUE
   groundSensorsSlot [
     DEF groundSensors E-puckGroundSensors {
     }
@@ -115,6 +116,17 @@ E-puck {
   rotation 9.921690875758528e-06 -0.9999999999329906 5.9648030967080995e-06 1.4097702041866444
   name "e-puck(9)"
   controller "epuck_feature_detection"
+  groundSensorsSlot [
+    DEF groundSensors E-puckGroundSensors {
+    }
+  ]
+}
+DEF supervisor E-puck {
+  translation 1.91313 -6.43031e-05 0.66332
+  rotation 9.921690875758528e-06 -0.9999999999329906 5.9648030967080995e-06 1.4097702041866444
+  name "e-puck(10)"
+  controller "supervisor"
+  supervisor TRUE
   groundSensorsSlot [
     DEF groundSensors E-puckGroundSensors {
     }

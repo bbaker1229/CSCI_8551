@@ -31,6 +31,12 @@ gs.enable(timestep)
 ps = robot.getDevice('ps0')
 ps.enable(timestep)
 
+# Enable body led
+body_led = robot.getDevice('led8')
+print(body_led.get())
+body_led.set(11)
+print(body_led.get())
+
 # Enable motors
 leftMotor = robot.getDevice('left wheel motor')
 rightMotor = robot.getDevice('right wheel motor')
