@@ -198,7 +198,7 @@ while robot.step(timestep) != -1:
             com_flg = True
             print(
                 myid,
-                "decision made: white at",
+                ",white,",
                 time.strftime('%H:%M:%S', time.gmtime(robot.getTime()))
             )
         elif concentration < 0.1 and decision_time > 30 and decison_check:
@@ -209,7 +209,7 @@ while robot.step(timestep) != -1:
             com_flg = True
             print(
                 myid,
-                "decision made: black at",
+                ",black,",
                 time.strftime('%H:%M:%S', time.gmtime(robot.getTime()))
             )
         elif (concentration < 0.9 and concentration > 0.1):
