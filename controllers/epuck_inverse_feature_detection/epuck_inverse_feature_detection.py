@@ -115,12 +115,10 @@ while robot.step(timestep) != -1:
             black_count = 0
             white_count = 0
             for (id,(time_estimate, estimate)) in received_estimates.items():
-                # reverse count, so if estimate == 1 increase black count
-                # instead of white
                 if estimate == 1:
-                    black_count  += 1
-                else:
                     white_count += 1
+                else:
+                    black_count += 1
 
             if white_count > black_count:
                 belief = 1
@@ -150,10 +148,12 @@ while robot.step(timestep) != -1:
             if first_belief:
                 belief = estimate
         else:
+            # reverse count, so if color is > 650 (closer to white) increase black
+            # count instead of white
             if gs.getValue() > 650:
-                white_time += 1
-            if gs.getValue() < 650:
                 black_time += 1
+            if gs.getValue() < 650:
+                white_time += 1
 
     if turn_flg:
         if time_delta >= rotation_time:  # If we are in turn mode and we hit the time limit; forward
