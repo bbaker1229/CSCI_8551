@@ -16,7 +16,7 @@ RectangleArena {
   floorAppearance Appearance {
     texture ImageTexture {
       url [
-        "E:/Github/CSCI_8551/controllers/epuck_feature_detection/floor_plan_R_75_seed_3130.jpeg"
+        "../controllers/epuck_feature_detection/floor_plan_R_75_seed_3130.jpeg"
       ]
     }
   }
