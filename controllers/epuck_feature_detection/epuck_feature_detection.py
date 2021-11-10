@@ -13,9 +13,7 @@ MAX_SPEED = 6.28
 MAX_ROTATION = 0.628  # 1 full rotation in 10s
 # comm range is in meters
 COM_RADIUS = 3 * BODYLENGTH
-print("COM_RADIUS:  ", COM_RADIUS)
 myid = uuid.uuid4()
-print("My ID is: ", myid)
 
 # create the Robot instance.
 robot = Robot()
@@ -125,7 +123,6 @@ while robot.step(timestep) != -1:
             else:
                 belief = 0
 
-            print("Observation time starting")
             forward_flg = True
             turn_flg = False
             com_flg = False
@@ -136,9 +133,7 @@ while robot.step(timestep) != -1:
     else:
         if robot.getTime() >= window_target_time:  # If we reach the full time window then reset the timers
             estimate = round(white_time / (white_time + black_time))
-            print(estimate)
             confidence = max(white_time, black_time) / (white_time + black_time)
-            print(confidence)
             com_period = confidence * 120
             start_com_period = robot.getTime()
             window_target_time = robot.getTime() + 60
@@ -188,13 +183,11 @@ while robot.step(timestep) != -1:
         str_id = str(newid)
         if str_id not in received_estimates.keys():
             concentration = 0.9*concentration + 0.1*received_belief
-            print("Concentration ", concentration)
         received_estimates[str_id] = (robot.getTime(), received_estimate)
 
     # check for decision
     if not decision:
         if (concentration > 0.9 or concentration < 0.1) and (not decison_check):
-            print("Start concentration time")
             decison_check = True
             start_decison_check = robot.getTime()
 
