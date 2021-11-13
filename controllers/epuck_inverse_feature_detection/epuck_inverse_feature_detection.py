@@ -201,7 +201,8 @@ while robot.step(timestep) != -1:
             print(
                 myid,
                 ",white,",
-                time.strftime('%H:%M:%S', time.gmtime(robot.getTime()))
+                time.strftime('%H:%M:%S', time.gmtime(robot.getTime())),
+                ",inverse"
             )
         elif concentration < 0.1 and decision_time > 30 and decison_check:
             decision = True
@@ -212,7 +213,9 @@ while robot.step(timestep) != -1:
             print(
                 myid,
                 ",black,",
-                time.strftime('%H:%M:%S', time.gmtime(robot.getTime()))
+                time.strftime('%H:%M:%S', time.gmtime(robot.getTime())),
+                ",inverse"
+                
             )
         elif (concentration < 0.9 and concentration > 0.1):
             # reset decision_check
