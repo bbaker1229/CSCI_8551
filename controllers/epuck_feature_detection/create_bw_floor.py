@@ -5,11 +5,11 @@ import matplotlib.pyplot as plt
 
 # define the ratio of white to black squares
 # number_of_white_squares / total_number_of_squares
-R = 0.75
+R = 0.70
 
 # define width and height of play area in tile size
-WIDTH = 12
-HEIGHT = 12
+WIDTH = 8
+HEIGHT = 8
 
 N = WIDTH * HEIGHT
 K = round(R * N)

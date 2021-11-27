@@ -3,20 +3,21 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation -0.5672196171152116 -0.7670050800296174 -0.29994184964494885 1.2272027010661148
-  position -3.076807897223405 3.639369874655571 2.098883595426124
+  orientation -0.5344365145213756 -0.7916120862090034 -0.2961889885091494 1.2418560457241632
+  position -3.1479962573597047 3.5901863674364916 2.0506757416203407
 }
 TexturedBackground {
 }
 TexturedBackgroundLight {
 }
 RectangleArena {
+  rotation 0 -1 0 1.50535
   floorSize 2.6 2.6
   floorTileSize 2.6 2.6
   floorAppearance Appearance {
     texture ImageTexture {
       url [
-        "E:/Github/CSCI_8551/controllers/epuck_feature_detection/floor_plan_R_75_seed_3130.jpeg"
+        "E:/Github/CSCI_8551/controllers/epuck_feature_detection/floor_plan_R_70_seed_9642.jpeg"
       ]
     }
   }
@@ -44,6 +45,96 @@ E-puck {
   translation -0.416969 -6.43031e-05 -0.434729
   rotation 9.921690875758528e-06 -0.9999999999329906 5.9648030967080995e-06 1.4097702041866444
   name "e-puck(2)"
+  controller "epuck_feature_detection"
+  groundSensorsSlot [
+    DEF groundSensors E-puckGroundSensors {
+    }
+  ]
+}
+E-puck {
+  translation 0.310099 -6.43031e-05 -0.939424
+  rotation 9.921690875758528e-06 -0.9999999999329906 5.9648030967080995e-06 1.4097702041866444
+  name "e-puck(10)"
+  controller "epuck_feature_detection"
+  groundSensorsSlot [
+    DEF groundSensors E-puckGroundSensors {
+    }
+  ]
+}
+E-puck {
+  translation -0.240086 -6.43031e-05 0.880621
+  rotation 9.921690875758528e-06 -0.9999999999329906 5.9648030967080995e-06 1.4097702041866444
+  name "e-puck(11)"
+  controller "epuck_feature_detection"
+  groundSensorsSlot [
+    DEF groundSensors E-puckGroundSensors {
+    }
+  ]
+}
+E-puck {
+  translation 0.812292 -6.43031e-05 -0.484472
+  rotation 9.921690875758528e-06 -0.9999999999329906 5.9648030967080995e-06 1.4097702041866444
+  name "e-puck(12)"
+  controller "epuck_feature_detection"
+  groundSensorsSlot [
+    DEF groundSensors E-puckGroundSensors {
+    }
+  ]
+}
+E-puck {
+  translation 0.303155 -6.43031e-05 0.499728
+  rotation 9.921690875758528e-06 -0.9999999999329906 5.9648030967080995e-06 1.4097702041866444
+  name "e-puck(13)"
+  controller "epuck_feature_detection"
+  groundSensorsSlot [
+    DEF groundSensors E-puckGroundSensors {
+    }
+  ]
+}
+E-puck {
+  translation -0.857809 -6.43031e-05 0.0240483
+  rotation 9.921690875758528e-06 -0.9999999999329906 5.9648030967080995e-06 1.4097702041866444
+  name "e-puck(14)"
+  controller "epuck_feature_detection"
+  groundSensorsSlot [
+    DEF groundSensors E-puckGroundSensors {
+    }
+  ]
+}
+E-puck {
+  translation -0.975868 -6.43031e-05 -0.431416
+  rotation 9.921690875758528e-06 -0.9999999999329906 5.9648030967080995e-06 1.4097702041866444
+  name "e-puck(15)"
+  controller "epuck_feature_detection"
+  groundSensorsSlot [
+    DEF groundSensors E-puckGroundSensors {
+    }
+  ]
+}
+E-puck {
+  translation -0.666947 -6.43031e-05 0.340328
+  rotation 3.941059999874157e-06 -0.9999999999680689 6.952009999778015e-06 2.43733
+  name "e-puck(16)"
+  controller "epuck_feature_detection"
+  groundSensorsSlot [
+    DEF groundSensors E-puckGroundSensors {
+    }
+  ]
+}
+E-puck {
+  translation 0.223114 -6.43031e-05 0.875655
+  rotation 7.319889999654254e-06 -0.9999999999527662 6.3942799996979745e-06 1.7632
+  name "e-puck(17)"
+  controller "epuck_feature_detection"
+  groundSensorsSlot [
+    DEF groundSensors E-puckGroundSensors {
+    }
+  ]
+}
+E-puck {
+  translation -0.928075 -6.43031e-05 0.804265
+  rotation 9.921690875758528e-06 -0.9999999999329906 5.9648030967080995e-06 1.4097702041866444
+  name "e-puck(18)"
   controller "epuck_feature_detection"
   groundSensorsSlot [
     DEF groundSensors E-puckGroundSensors {
@@ -101,7 +192,7 @@ E-puck {
   ]
 }
 E-puck {
-  translation -0.0390956 -6.43031e-05 0.0732197
+  translation -0.852012 -6.43031e-05 0.33997
   rotation 9.921690875758528e-06 -0.9999999999329906 5.9648030967080995e-06 1.4097702041866444
   name "e-puck(8)"
   controller "epuck_feature_detection"
@@ -111,7 +202,7 @@ E-puck {
   ]
 }
 E-puck {
-  translation 0.395924 -6.43031e-05 0.373974
+  translation -0.87782 -6.43031e-05 -1.07712
   rotation 9.921690875758528e-06 -0.9999999999329906 5.9648030967080995e-06 1.4097702041866444
   name "e-puck(9)"
   controller "epuck_feature_detection"

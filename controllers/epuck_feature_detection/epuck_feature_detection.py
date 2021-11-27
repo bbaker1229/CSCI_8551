@@ -9,7 +9,8 @@ import time
 
 # body length in meters
 BODYLENGTH = 71/1000
-MAX_SPEED = 6.28
+# MAX_SPEED = 6.28
+MAX_SPEED = 0.25 * 10
 MAX_ROTATION = 0.628  # 1 full rotation in 10s
 # comm range is in meters
 COM_RADIUS = 3 * BODYLENGTH
@@ -46,7 +47,8 @@ receiver.enable(timestep)
 # Initialize forward movement
 leftMotor.setVelocity(MAX_SPEED)
 rightMotor.setVelocity(MAX_SPEED)
-forward_time = np.random.exponential(14, 1)  # use 240 instead of 14
+# forward_time = np.random.exponential(14, 1)  # use 240 instead of 14
+forward_time = np.random.exponential(1, 1)  # The paper uses 60s for 0.033m/s
 forward_flg = True
 rotation_time = 0
 turn_flg = False
@@ -161,7 +163,7 @@ while robot.step(timestep) != -1:
             # Set the forward time
             start_time = robot.getTime()
             time_delta = robot.getTime() - start_time
-            forward_time = np.random.exponential(14, 1)
+            forward_time = np.random.exponential(1, 1)
             # Set motors to forward
             leftMotor.setVelocity(MAX_SPEED)
             rightMotor.setVelocity(MAX_SPEED)
